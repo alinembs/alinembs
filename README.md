@@ -9,7 +9,7 @@ a vida, o dia - dia das pessoas , em coisas que possam parecer simples ao olhar 
 Estou Desenvolvendo habilidades e conhecimento aprofundado na
 área de Inteligencia Artificial, no ramo de Machine learning, 
 voltado para area de ciência de dados, analista de dados. 
-Produzindo aos poucos ferramentas para setor finaceiro.
+Produzindo aos poucos ferramentas para setor finaceiro e juridico.
 
 
 
