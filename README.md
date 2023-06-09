@@ -10,6 +10,7 @@ Estou Desenvolvendo habilidades e conhecimento aprofundado na
 área de Inteligencia Artificial, no ramo de Machine learning, 
 voltado para area de ciência de dados, analista de dados. 
 Produzindo aos poucos ferramentas para setor finaceiro e juridico.
+Tenho conhecimento em projetos voltados para o Microcontrolador ESP32.
 
 
 
