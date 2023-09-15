@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="./assets/hello.gif" />
+  <img src="portifólio/assets/Hello I’am Aline mariana.gif" />
 </p>
 
 <p align="center">
@@ -52,7 +52,6 @@
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
  
 
-
 </div>
 
 <div align="center">
@@ -83,9 +82,4 @@
     </td>
   </tr>
 </table>
-
-![Snake animation](https://github.com/pedroperegrinaa/pedroperegrinaa/blob/output/github-contribution-grid-snake.svg)
-
-<Estrelas de verdade desafiam a escuridao. Continue tentando. Voce consegue.>
-
 
