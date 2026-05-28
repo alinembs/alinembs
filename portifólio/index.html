@@ -1,231 +1,2535 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Aline Mariana — Engenheira de Software, IA, Chatbots e Visão Computacional"
+    />
+    <title>Aline Mariana · Software Engineer</title>
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts -->
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&f[]=zodiak@400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- jsPDF for CV generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- Lucide icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
-    <!-- Font Awesome CDN  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
-        crossorigin="anonymous" />
+    <style>
+      /* ========================
+   DESIGN TOKENS
+======================== */
+      :root,
+      [data-theme="light"] {
+        --color-bg: #f7f6f2;
+        --color-surface: #f9f8f5;
+        --color-surface-2: #fbfbf9;
+        --color-surface-offset: #f3f0ec;
+        --color-surface-offset-2: #edeae5;
+        --color-surface-dynamic: #e6e4df;
+        --color-divider: #dcd9d5;
+        --color-border: #d4d1ca;
+        --color-text: #28251d;
+        --color-text-muted: #7a7974;
+        --color-text-faint: #bab9b4;
+        --color-text-inverse: #f9f8f4;
+        --color-primary: #01696f;
+        --color-primary-hover: #0c4e54;
+        --color-primary-highlight: #cedcd8;
+        --color-warning: #964219;
+        --color-success: #437a22;
+        --color-blue: #006494;
+        --color-purple: #7a39bb;
+        --radius-sm: 0.375rem;
+        --radius-md: 0.5rem;
+        --radius-lg: 0.75rem;
+        --radius-xl: 1rem;
+        --radius-full: 9999px;
+        --shadow-sm: 0 1px 2px oklch(0.2 0.01 80 / 0.06);
+        --shadow-md: 0 4px 12px oklch(0.2 0.01 80 / 0.08);
+        --shadow-lg: 0 12px 32px oklch(0.2 0.01 80 / 0.12);
+        --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+        --space-1: 0.25rem;
+        --space-2: 0.5rem;
+        --space-3: 0.75rem;
+        --space-4: 1rem;
+        --space-5: 1.25rem;
+        --space-6: 1.5rem;
+        --space-8: 2rem;
+        --space-10: 2.5rem;
+        --space-12: 3rem;
+        --space-16: 4rem;
+        --space-20: 5rem;
+        --space-24: 6rem;
+        --font-display: "Zodiak", Georgia, serif;
+        --font-body: "Satoshi", "Inter", sans-serif;
+        --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+        --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+        --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+        --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+        --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+        --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+        --text-hero: clamp(3rem, 0.5rem + 7vw, 8rem);
+        --content-narrow: 640px;
+        --content-default: 960px;
+        --content-wide: 1200px;
+      }
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+      [data-theme="dark"] {
+        --color-bg: #0f0f0d;
+        --color-surface: #161614;
+        --color-surface-2: #1c1c1a;
+        --color-surface-offset: #1a1a18;
+        --color-surface-offset-2: #202020;
+        --color-surface-dynamic: #2a2a28;
+        --color-divider: #242422;
+        --color-border: #313130;
+        --color-text: #e2e0dd;
+        --color-text-muted: #8a8a86;
+        --color-text-faint: #555552;
+        --color-text-inverse: #1a1a18;
+        --color-primary: #3fa8af;
+        --color-primary-hover: #2a8f96;
+        --color-primary-highlight: #1a3535;
+        --color-warning: #d4855a;
+        --color-success: #6daa45;
+        --color-blue: #5591c7;
+        --color-purple: #a86fdf;
+        --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.25);
+        --shadow-md: 0 4px 12px oklch(0 0 0 / 0.4);
+        --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.55);
+      }
 
-    <title>Portifólio Aline </title>
-</head>
+      /* ========================
+   BASE RESET
+======================== */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        scroll-padding-top: 5rem;
+      }
+      body {
+        min-height: 100dvh;
+        font-family: var(--font-body);
+        font-size: var(--text-base);
+        color: var(--color-text);
+        background: var(--color-bg);
+        line-height: 1.6;
+        transition:
+          background var(--transition),
+          color var(--transition);
+      }
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        cursor: pointer;
+        background: none;
+        border: none;
+        font: inherit;
+        color: inherit;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        text-wrap: balance;
+        line-height: 1.2;
+      }
+      p,
+      li {
+        text-wrap: pretty;
+        max-width: 68ch;
+      }
+      ::selection {
+        background: oklch(from var(--color-primary) l c h / 0.25);
+        color: var(--color-text);
+      }
+      :focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 3px;
+        border-radius: var(--radius-sm);
+      }
 
-<body>
-    <nav id="navbar" class="navbar"><a href="#"></a></nav>
+      /* ========================
+   LAYOUT
+======================== */
+      .container {
+        max-width: var(--content-default);
+        margin-inline: auto;
+        padding-inline: var(--space-6);
+      }
+      .container--wide {
+        max-width: var(--content-wide);
+        margin-inline: auto;
+        padding-inline: var(--space-6);
+      }
+      section {
+        padding-block: clamp(var(--space-12), 8vw, var(--space-24));
+      }
 
-    <div class="container">
-        <!--=============== NAVIGATION MENU ===============-->
-    
-        <div class="menu">
-            <a href="#welcome-section" class="menu-icon fas fa-home"></a>
-            <a href="#about" class="menu-icon fas fa-user"></a>
-            <a href="#projects" class="menu-icon fas fa-code"></a>
-            <a href="#experience" class="menu-icon fas fa-briefcase"></a>
-        </div>
-    
-        <!--=============== MAIN "WINDOW" ===============-->
-    
-        <div class="portfolio">
-            <!--=============== HEADER SECTION ===============-->
-    
-            <section class="header">
-                <img class="header-img"
-                    src="/portifólio/img/Screenshot_20220718-164248~2.png"
-                    alt="" />
-                <h1>Aline Mariana</h1>
-                <h2>Computer Engineering</h2>
-                <h2>Data Scientist</h2>
-                <div class="socials">
-                    <a href="https://www.linkedin.com/in/aline-mariana-b83575184/" target="_blank" class="fab fa-linkedin-in" id="profile-link"></a>
-                    <a href="https://github.com/alinembs" target="_blank" class="fab fa-github"></a>
-                    <a href="https://replit.com/@alinembs24?path="><img src="/portifólio/img/replit-icon-seeklogo.com.svg"width="15" height="15"  ></a>
-                
-                    
-                </div>
-                <a href="/portifólio/doc/CV_AMBS.pdf" class="cta">Download CV</a>
-            </section>
-    
-            <!--=============== CONTENT SECTION ===============-->
-    
-            <div class="content">
-                <!--=============== HOME ===============-->
-    
-                <section class="content-card home" id="welcome-section">
-                    <h1>Olá, Eu sou Aline Mariana </h1>
-                </section>
-    
-                <!--=============== ABOUT ME ===============-->
-    
-                <section class="content-card about" id="about">
-                    <h1>Sobre mim </h1>
-                    <div class="about-item about-me">
-                        <p>
-                            Olá sou Aline Mariana , atualmente estudante em Engenharia da Computação,
-                             sou curiosa e gosto de aprender,solucionar e encontrar problemas, 
-                             trabalha em equipe é bem facil para mim, pois sou muito sociavél e 
-                             extrovertida para alcancar objetivos maiores , sempre corro atrás do necessário.
-                              Amo a ideia de poder construir ferramentas e 
-                              tecnologias que facilitam a vida, o dia - dia das pessoas , em coisas que possam parecer simples ao olhar critico. 
-                        </p>
-                        <p>
-                            Estou Desenvolvendo habilidades e conhecimento aprofundado na área de Inteligencia Artificial,
-                            no ramo de Machine learning, voltado para area de ciência de dados e analista de dados.
-                            Também Desenvolvo projetos na área de IOT(Internet das coisas), Redes de Sensores e Sistema Embarcados. 
-                        </p>
-                    </div>
-                    <div class="col-2">
-                        <div class="about-item skills">
-                            <h1>Skills</h1>
-                            <span class="skill">HTML</span>
-                            <span class="skill">CSS</span>
-                            <span class="skill">JavaScript</span>
-                            <span class="skill">Automation</span>
-                            <span class="skill">Web Scraping</span>
-                            <span class="skill">Machine Learning</span>
-                            <span class="skill">SQL</span>
-                            <span class="skill">Git</span>
-                            <span class="skill">Python</span>
-                            <span class="skill">Unix/Linux</span>
-                            <span class="skill">ESP32</span>
-                            <span class="skill">C++</span>
-                            <span class="skill">C</span>
-                        </div>
-    
-                        <div class="about-item languages">
-                            <h1>Languages</h1>
-                            <div class="language">
-                                <p>portuguese</p>
-                                <span class="bar"><span class="polish"></span></span>
-                            </div>
-                            <div class="language">
-                                <p>english</p>
-                                <span class="bar"><span class="english"></span></span>
-                            </div>
-                            <div class="language">
-                                <p>spanish</p>
-                                <span class="bar"><span class="french"></span></span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-    
-                <!--=============== PROJECTS ===============-->
-    
-                <section class="content-card projects" id="projects">
-                    <h1>Projects</h1>
-                    <div class="col-2 project-list">
-                        <div class="project-tile">
-                            <img src="https://shots.codepen.io/nietoperq/pen/BaPJqGW-512.webp?version=1674304822"
-                                alt="" />
-                            <div class="overlay">
-                                <div class="project-description">
-                                    <h3>Projeto 1</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        Nisi aperiam voluptate accusamus velit omnis.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-tile">
-                            <img src="https://shots.codepen.io/nietoperq/pen/GRBOjyV-512.webp?version=1674084446"
-                                alt="" />
-                            <div class="overlay">
-                                <div class="project-description">
-                                    <h3>Projeto 2</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        Nisi aperiam voluptate accusamus velit omnis.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-tile">
-                            <img src="https://shots.codepen.io/nietoperq/pen/dyjWxgX-512.webp?version=1673554073"
-                                alt="" />
-                            <div class="overlay">
-                                <div class="project-description">
-                                    <h3>Projeto 3</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        Nisi aperiam voluptate accusamus velit omnis.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-tile">
-                            <img src="https://shots.codepen.io/nietoperq/pen/vYagdwo-512.webp?version=1673549480"
-                                alt="" />
-                            <div class="overlay">
-                                <div class="project-description">
-                                    <h3>Projeto 4</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        Nisi aperiam voluptate accusamus velit omnis.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="https://github.com/alinembs">see more...</a>
-                </section>
-    
-                <!--=============== EXPERIENCE ===============-->
-    
-                <section class="content-card experience" id="experience">
-                    <h1>Experience</h1>
-                    <div class="timeline">
-                        <div class="timeline-items">
-                            <div class="timeline-item">
-                                <div class="timeline-date">2022 - now</div>
-                                <div class="timeline-content">
-                                    <h3>timeline item 1</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                        Ab iusto accusantium nostrum eligendi debitis quisquam.
-                                        Corporis at voluptatem culpa officia.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-date">2015 - 2022</div>
-                                <div class="timeline-content">
-                                    <h3>timeline item 2</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                        Ab iusto accusantium nostrum eligendi debitis quisquam.
-                                        Corporis at voluptatem culpa officia.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-date">2014 - 2015</div>
-                                <div class="timeline-content">
-                                    <h3>timeline item 3</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                        Ab iusto accusantium nostrum eligendi debitis quisquam.
-                                        Corporis at voluptatem culpa officia.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-    
-    
-            </div>
-        </div>
+      /* ========================
+   NAVBAR
+======================== */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--space-4) var(--space-6);
+        background: oklch(from var(--color-bg) l c h / 0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--color-border);
+        transition:
+          background var(--transition),
+          border-color var(--transition);
+      }
+      .navbar__logo {
+        font-family: var(--font-display);
+        font-size: var(--text-lg);
+        font-weight: 700;
+        color: var(--color-primary);
+        letter-spacing: -0.02em;
+      }
+      .navbar__links {
+        display: flex;
+        align-items: center;
+        gap: var(--space-6);
+        list-style: none;
+      }
+      .navbar__links a {
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        transition: color var(--transition);
+      }
+      .navbar__links a:hover {
+        color: var(--color-text);
+      }
+      .theme-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: var(--radius-full);
+        color: var(--color-text-muted);
+        border: 1px solid var(--color-border);
+        transition:
+          color var(--transition),
+          border-color var(--transition),
+          background var(--transition);
+      }
+      .theme-toggle:hover {
+        color: var(--color-text);
+        background: var(--color-surface-offset);
+      }
+      .hamburger {
+        display: none;
+      }
+
+      /* ========================
+   HERO
+======================== */
+      .hero {
+        min-height: 100dvh;
+        display: grid;
+        place-items: center;
+        padding-top: 6rem;
+        background:
+          radial-gradient(
+            ellipse 80% 60% at 60% 40%,
+            oklch(from var(--color-primary) l c h / 0.07) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 40% 40% at 10% 80%,
+            oklch(from var(--color-purple) l c h / 0.04) 0%,
+            transparent 50%
+          );
+        text-align: center;
+      }
+      .hero__eyebrow {
+        font-size: var(--text-sm);
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--color-primary);
+        margin-bottom: var(--space-4);
+      }
+      .hero__name {
+        font-family: var(--font-display);
+        font-size: var(--text-hero);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        color: var(--color-text);
+        line-height: 1;
+        margin-bottom: var(--space-4);
+      }
+      .hero__roles {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--space-2);
+        margin-bottom: var(--space-8);
+      }
+      .hero__role {
+        font-size: var(--text-sm);
+        padding: var(--space-1) var(--space-4);
+        border-radius: var(--radius-full);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        color: var(--color-text-muted);
+      }
+      .hero__role--primary {
+        background: var(--color-primary-highlight);
+        border-color: oklch(from var(--color-primary) l c h / 0.3);
+        color: var(--color-primary);
+      }
+      .hero__desc {
+        font-size: var(--text-lg);
+        color: var(--color-text-muted);
+        max-width: 52ch;
+        margin: 0 auto var(--space-10);
+        line-height: 1.65;
+      }
+      .hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--space-4);
+      }
+
+      /* ========================
+   BUTTONS
+======================== */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: 0.6em 1.4em;
+        font-size: var(--text-sm);
+        font-weight: 600;
+        border-radius: var(--radius-lg);
+        border: 1px solid transparent;
+        transition: all var(--transition);
+        white-space: nowrap;
+      }
+      .btn--primary {
+        background: var(--color-primary);
+        color: #fff;
+      }
+      .btn--primary:hover {
+        background: var(--color-primary-hover);
+      }
+      .btn--ghost {
+        background: transparent;
+        border-color: var(--color-border);
+        color: var(--color-text);
+      }
+      .btn--ghost:hover {
+        background: var(--color-surface-offset);
+        border-color: var(--color-text-faint);
+      }
+      .btn--outline {
+        background: transparent;
+        border-color: var(--color-primary);
+        color: var(--color-primary);
+      }
+      .btn--outline:hover {
+        background: var(--color-primary-highlight);
+      }
+
+      /* ========================
+   SOCIAL LINKS
+======================== */
+      .hero__socials {
+        display: flex;
+        justify-content: center;
+        gap: var(--space-4);
+        margin-top: var(--space-8);
+      }
+      .social-link {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);
+        padding: var(--space-2) var(--space-3);
+        border-radius: var(--radius-md);
+        border: 1px solid var(--color-border);
+        background: var(--color-surface);
+        transition: all var(--transition);
+      }
+      .social-link:hover {
+        color: var(--color-text);
+        border-color: var(--color-text-faint);
+        background: var(--color-surface-offset);
+      }
+
+      /* ========================
+   SECTION HEADERS
+======================== */
+      .section-label {
+        font-size: var(--text-xs);
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--color-primary);
+        margin-bottom: var(--space-3);
+      }
+      .section-title {
+        font-family: var(--font-display);
+        font-size: var(--text-2xl);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--color-text);
+        margin-bottom: var(--space-4);
+      }
+      .section-desc {
+        font-size: var(--text-base);
+        color: var(--color-text-muted);
+        max-width: 56ch;
+        margin-bottom: var(--space-12);
+      }
+      .divider {
+        width: 100%;
+        height: 1px;
+        background: var(--color-divider);
+        margin-block: var(--space-2);
+      }
+
+      /* ========================
+   ABOUT
+======================== */
+      .about__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-12);
+        align-items: start;
+      }
+      .about__text p {
+        color: var(--color-text-muted);
+        margin-bottom: var(--space-5);
+        line-height: 1.75;
+      }
+      .about__text p strong {
+        color: var(--color-text);
+      }
+      .about__stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-4);
+      }
+      .stat-card {
+        padding: var(--space-5);
+        border-radius: var(--radius-lg);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+      }
+      .stat-card__num {
+        font-family: var(--font-display);
+        font-size: var(--text-2xl);
+        font-weight: 700;
+        color: var(--color-primary);
+        line-height: 1;
+        margin-bottom: var(--space-1);
+      }
+      .stat-card__label {
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      /* ========================
+   SKILLS
+======================== */
+      .skills-section {
+        background: var(--color-surface);
+      }
+      .skills__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: var(--space-4);
+      }
+      .skill-group {
+        padding: var(--space-5);
+        border-radius: var(--radius-lg);
+        background: var(--color-bg);
+        border: 1px solid var(--color-border);
+      }
+      .skill-group__title {
+        font-size: var(--text-xs);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--color-primary);
+        margin-bottom: var(--space-3);
+      }
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+      }
+      .skill-tag {
+        font-size: var(--text-xs);
+        padding: var(--space-1) var(--space-2);
+        border-radius: var(--radius-sm);
+        background: var(--color-surface-offset);
+        color: var(--color-text-muted);
+        border: 1px solid oklch(from var(--color-text) l c h / 0.08);
+      }
+
+      /* ========================
+   EXPERIENCE
+======================== */
+      .experience__list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-6);
+      }
+      .exp-card {
+        padding: var(--space-6) var(--space-8);
+        border-radius: var(--radius-xl);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: var(--space-4);
+        transition:
+          box-shadow var(--transition),
+          border-color var(--transition);
+      }
+      .exp-card:hover {
+        box-shadow: var(--shadow-md);
+        border-color: oklch(from var(--color-primary) l c h / 0.3);
+      }
+      .exp-card__company {
+        font-size: var(--text-xs);
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--color-primary);
+        margin-bottom: var(--space-1);
+      }
+      .exp-card__title {
+        font-family: var(--font-display);
+        font-size: var(--text-lg);
+        font-weight: 600;
+        color: var(--color-text);
+        margin-bottom: var(--space-3);
+      }
+      .exp-card__desc {
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        line-height: 1.7;
+        margin-bottom: var(--space-4);
+        max-width: 65ch;
+      }
+      .exp-card__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+      }
+      .tag {
+        font-size: var(--text-xs);
+        padding: var(--space-1) var(--space-3);
+        border-radius: var(--radius-full);
+        background: var(--color-surface-offset);
+        color: var(--color-text-muted);
+        border: 1px solid var(--color-border);
+      }
+      .exp-card__period {
+        font-size: var(--text-xs);
+        color: var(--color-text-faint);
+        text-align: right;
+        white-space: nowrap;
+      }
+      .exp-card__type {
+        font-size: var(--text-xs);
+        color: var(--color-success);
+        font-weight: 600;
+        text-align: right;
+      }
+
+      /* ========================
+   PROJECTS
+======================== */
+      .projects-section {
+        background: var(--color-surface);
+      }
+      .projects__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+        gap: var(--space-6);
+      }
+      .project-card {
+        border-radius: var(--radius-xl);
+        background: var(--color-bg);
+        border: 1px solid var(--color-border);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition:
+          box-shadow var(--transition),
+          transform var(--transition),
+          border-color var(--transition);
+      }
+      .project-card:hover {
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-3px);
+        border-color: oklch(from var(--color-primary) l c h / 0.35);
+      }
+      .project-card__header {
+        padding: var(--space-6) var(--space-6) var(--space-4);
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+      }
+      .project-card__icon {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-md);
+        background: var(--color-primary-highlight);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-primary);
+      }
+      .project-card__links {
+        display: flex;
+        gap: var(--space-2);
+      }
+      .project-card__link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: var(--radius-md);
+        color: var(--color-text-muted);
+        border: 1px solid var(--color-border);
+        transition: all var(--transition);
+      }
+      .project-card__link:hover {
+        color: var(--color-primary);
+        border-color: var(--color-primary);
+      }
+      .project-card__body {
+        padding: 0 var(--space-6) var(--space-6);
+        flex: 1;
+      }
+      .project-card__title {
+        font-family: var(--font-display);
+        font-size: var(--text-lg);
+        font-weight: 600;
+        color: var(--color-text);
+        margin-bottom: var(--space-2);
+      }
+      .project-card__desc {
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        line-height: 1.65;
+        margin-bottom: var(--space-4);
+      }
+      .project-card__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+      }
+      .project-card__tag {
+        font-size: var(--text-xs);
+        padding: 2px var(--space-2);
+        border-radius: var(--radius-sm);
+        background: var(--color-surface-offset);
+        color: var(--color-text-muted);
+      }
+
+      /* ========================
+   CV GENERATOR
+======================== */
+      .cv-section {
+        background: radial-gradient(
+          ellipse 70% 50% at 50% 50%,
+          oklch(from var(--color-primary) l c h / 0.06) 0%,
+          transparent 70%
+        );
+        text-align: center;
+      }
+      .cv-card {
+        max-width: 540px;
+        margin: 0 auto;
+        padding: var(--space-10) var(--space-8);
+        border-radius: var(--radius-xl);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        box-shadow: var(--shadow-lg);
+      }
+      .cv-card__icon {
+        width: 56px;
+        height: 56px;
+        border-radius: var(--radius-lg);
+        background: var(--color-primary-highlight);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-primary);
+        margin: 0 auto var(--space-5);
+      }
+      .cv-card h3 {
+        font-family: var(--font-display);
+        font-size: var(--text-xl);
+        font-weight: 700;
+        margin-bottom: var(--space-3);
+      }
+      .cv-card p {
+        color: var(--color-text-muted);
+        font-size: var(--text-sm);
+        max-width: 38ch;
+        margin: 0 auto var(--space-6);
+      }
+      #cv-status {
+        font-size: var(--text-xs);
+        color: var(--color-text-faint);
+        margin-top: var(--space-3);
+        min-height: 1.4em;
+      }
+
+      /* ========================
+   CONTACT
+======================== */
+      .contact__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-12);
+        align-items: center;
+      }
+      .contact__info h2 {
+        font-family: var(--font-display);
+        font-size: var(--text-2xl);
+        font-weight: 700;
+        margin-bottom: var(--space-5);
+      }
+      .contact__info p {
+        color: var(--color-text-muted);
+        margin-bottom: var(--space-6);
+      }
+      .contact__links {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+      }
+      .contact-link {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        padding: var(--space-4) var(--space-5);
+        border-radius: var(--radius-lg);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        color: var(--color-text);
+        font-size: var(--text-sm);
+        transition: all var(--transition);
+      }
+      .contact-link:hover {
+        border-color: var(--color-primary);
+        background: var(--color-primary-highlight);
+        color: var(--color-primary);
+      }
+      .contact-link__icon {
+        color: var(--color-text-muted);
+        flex-shrink: 0;
+      }
+      .contact-link:hover .contact-link__icon {
+        color: var(--color-primary);
+      }
+      .contact-link__text {
+        flex: 1;
+      }
+      .contact-link__label {
+        font-weight: 600;
+      }
+      .contact-link__value {
+        font-size: var(--text-xs);
+        color: var(--color-text-faint);
+      }
+      .contact__cta-box {
+        padding: var(--space-10) var(--space-8);
+        border-radius: var(--radius-xl);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        text-align: center;
+      }
+      .contact__cta-box h3 {
+        font-family: var(--font-display);
+        font-size: var(--text-xl);
+        margin-bottom: var(--space-3);
+      }
+      .contact__cta-box p {
+        color: var(--color-text-muted);
+        font-size: var(--text-sm);
+        margin: 0 auto var(--space-6);
+      }
+
+      /* ========================
+   FOOTER
+======================== */
+      footer {
+        border-top: 1px solid var(--color-divider);
+        padding: var(--space-8) 0;
+      }
+      .footer__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: var(--space-4);
+      }
+      .footer__copy {
+        font-size: var(--text-xs);
+        color: var(--color-text-faint);
+      }
+      .footer__links {
+        display: flex;
+        gap: var(--space-6);
+      }
+      .footer__links a {
+        font-size: var(--text-xs);
+        color: var(--color-text-faint);
+        transition: color var(--transition);
+      }
+      .footer__links a:hover {
+        color: var(--color-primary);
+      }
+
+      /* ========================
+   MOBILE NAV DRAWER
+======================== */
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        background: oklch(from var(--color-bg) l c h / 0.97);
+        backdrop-filter: blur(16px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-8);
+      }
+      .mobile-menu.open {
+        display: flex;
+      }
+      .mobile-menu a {
+        font-family: var(--font-display);
+        font-size: var(--text-xl);
+        font-weight: 600;
+        color: var(--color-text);
+        transition: color var(--transition);
+      }
+      .mobile-menu a:hover {
+        color: var(--color-primary);
+      }
+      .mobile-menu__close {
+        position: absolute;
+        top: var(--space-5);
+        right: var(--space-6);
+        color: var(--color-text-muted);
+        display: flex;
+      }
+
+      /* ========================
+   RESPONSIVE
+======================== */
+      @media (max-width: 768px) {
+        .navbar__links {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+          align-items: center;
+          color: var(--color-text-muted);
+        }
+        .about__grid {
+          grid-template-columns: 1fr;
+        }
+        .about__stats {
+          grid-template-columns: 1fr 1fr;
+        }
+        .contact__grid {
+          grid-template-columns: 1fr;
+        }
+        .exp-card {
+          grid-template-columns: 1fr;
+        }
+        .exp-card__period {
+          text-align: left;
+        }
+      }
+      @media (max-width: 480px) {
+        .hero__name {
+          letter-spacing: -0.02em;
+        }
+        .about__stats {
+          grid-template-columns: 1fr;
+        }
+        .container,
+        .container--wide {
+          padding-inline: var(--space-4);
+        }
+      }
+
+      /* ========================
+   SCROLL ANIMATIONS
+======================== */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="navbar">
+      <span class="navbar__logo">ambs</span>
+      <ul class="navbar__links" role="list">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#experiencia">Experiência</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#curriculo">Currículo</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+      <div style="display: flex; gap: var(--space-3); align-items: center">
+        <button
+          class="theme-toggle"
+          data-theme-toggle
+          aria-label="Alternar tema"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+        <button class="hamburger" id="hamburger-btn" aria-label="Abrir menu">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ==================== MOBILE MENU ==================== -->
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true">
+      <button
+        class="mobile-menu__close"
+        id="menu-close"
+        aria-label="Fechar menu"
+      >
+        <svg
+          width="26"
+          height="26"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+      <a href="#sobre" class="mobile-nav-link">Sobre</a>
+      <a href="#experiencia" class="mobile-nav-link">Experiência</a>
+      <a href="#projetos" class="mobile-nav-link">Projetos</a>
+      <a href="#curriculo" class="mobile-nav-link">Currículo</a>
+      <a href="#contato" class="mobile-nav-link">Contato</a>
     </div>
 
-    <script src="script.js"></script>
-</body>
+    <!-- ==================== HERO ==================== -->
+    <section class="hero" id="inicio">
+      <div
+        class="container"
+        style="display: flex; flex-direction: column; align-items: center"
+      >
+        <p class="hero__eyebrow reveal">
+          Software Engineer · IA & Chatbots · Visão Computacional
+        </p>
+        <h1 class="hero__name reveal reveal-delay-1">Aline<br />Mariana</h1>
+        <div class="hero__roles reveal reveal-delay-2">
+          <span class="hero__role hero__role--primary">🤖 AI & NLP</span>
+          <span class="hero__role">👁 Visão Computacional</span>
+          <span class="hero__role">🐍 Python · FastAPI</span>
+          <span class="hero__role">⚡ LangChain · LangGraph</span>
+          <span class="hero__role">🔌 IoT · ESP32</span>
+        </div>
+        <p class="hero__desc reveal reveal-delay-2">
+          Estudante de Engenharia de Computação pela UEMA. Desenvolvo sistemas
+          inteligentes — de chatbots financeiros | educacionais a visão
+          computacional para drones e câmeras de vigilância. Previsão de
+          conclusão: final de 2026.
+        </p>
+        <div class="hero__actions reveal reveal-delay-3">
+          <a href="#projetos" class="btn btn--primary">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"
+              />
+            </svg>
+            Ver Projetos
+          </a>
+          <a href="#curriculo" class="btn btn--ghost">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+              />
+              <polyline points="14,2 14,8 20,8" />
+            </svg>
+            Baixar CV
+          </a>
+        </div>
+        <div class="hero__socials reveal reveal-delay-3">
+          <a
+            href="https://github.com/alinembs"
+            target="_blank"
+            rel="noopener"
+            class="social-link"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+              />
+            </svg>
+            GitHub
+          </a>
+          <a
+            href="https://www.linkedin.com/in/aline-mariana-b83575184/"
+            target="_blank"
+            rel="noopener"
+            class="social-link"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+              />
+            </svg>
+            LinkedIn
+          </a>
+          <a
+            href="https://huggingface.co/linembs"
+            target="_blank"
+            rel="noopener"
+            class="social-link"
+          >
+            🤗 HuggingFace
+          </a>
+        </div>
+      </div>
+    </section>
 
+    <!-- ==================== SOBRE ==================== -->
+    <section id="sobre">
+      <div class="container">
+        <p class="section-label reveal">Sobre mim</p>
+        <div class="about__grid">
+          <div class="about__text">
+            <h2 class="section-title reveal">
+              Construindo IA que<br />impacta pessoas
+            </h2>
+            <p class="reveal reveal-delay-1">
+              Sou estudante de <strong>Engenharia de Computação</strong> pela
+              UEMA, com foco em Inteligência Artificial, Processamento de
+              Linguagem Natural e Visão Computacional. Atuo como desenvolvedora
+              de sistemas e pesquisadora em duas frentes ativas — chatbots de
+              gestão financeira e inspeção inteligente com visão computacional.
+            </p>
+            <p class="reveal reveal-delay-1">
+              Tenho interesse em sistemas embarcados e IoT, explorando
+              tecnologias como <strong>ESP32, Arduino e MQTT</strong>. Ao longo
+              da minha experiência, venho aplicando Python, Java (Spring),
+              React, Next.js, TypeScript e PostgreSQL em projetos de alto
+              impacto.
+            </p>
+            <p class="reveal reveal-delay-2">
+              Com conclusão prevista para o final de 2026, busco desafios que
+              unam <strong>IA, automação e inovação tecnológica</strong> — seja
+              em startups, pesquisa aplicada ou projetos de impacto social.
+            </p>
+          </div>
+          <div class="about__stats reveal reveal-delay-2">
+            <div class="stat-card">
+              <div class="stat-card__num">2+</div>
+              <div class="stat-card__label">Anos em IA/ML</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__num">2</div>
+              <div class="stat-card__label">Empresas ativas</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__num">10+</div>
+              <div class="stat-card__label">Tecnologias</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__num">2026</div>
+              <div class="stat-card__label">Formatura prevista</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SKILLS ==================== -->
+    <section class="skills-section">
+      <div class="container">
+        <p class="section-label reveal">Stack</p>
+        <h2 class="section-title reveal">Ferramentas & Tecnologias</h2>
+        <div class="skills__grid">
+          <div class="skill-group reveal reveal-delay-1">
+            <div class="skill-group__title">IA & ML</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">LangChain</span>
+              <span class="skill-tag">LangGraph</span>
+              <span class="skill-tag">FastAPI</span>
+              <span class="skill-tag">TensorFlow</span>
+              <span class="skill-tag">PyTorch</span>
+              <span class="skill-tag">scikit-learn</span>
+              <span class="skill-tag">HuggingFace</span>
+            </div>
+          </div>
+          <div class="skill-group reveal reveal-delay-1">
+            <div class="skill-group__title">Visão Computacional</div>
+            <div class="skill-tags">
+              <span class="skill-tag">OpenCV</span>
+              <span class="skill-tag">YOLO</span>
+              <span class="skill-tag">Detecção de anomalias</span>
+              <span class="skill-tag">Anotação de dados</span>
+              <span class="skill-tag">Drone / UAV</span>
+              <span class="skill-tag">Câmeras de Vigilância</span>
+
+
+            </div>
+          </div>
+          <div class="skill-group reveal reveal-delay-2">
+            <div class="skill-group__title">Backend & DB</div>
+            <div class="skill-tags">
+              <span class="skill-tag">FastAPI</span>
+              <span class="skill-tag">Spring Boot</span>
+              <span class="skill-tag">Redis</span>
+              <span class="skill-tag">Supabase</span>
+              <span class="skill-tag">PostgreSQL</span>
+              <span class="skill-tag">MySQL</span>
+
+            </div>
+          </div>
+          <div class="skill-group reveal reveal-delay-2">
+            <div class="skill-group__title">Frontend</div>
+            <div class="skill-tags">
+              <span class="skill-tag">React</span>
+              <span class="skill-tag">Next.js</span>
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">HTML5</span>
+              <span class="skill-tag">CSS3</span>
+            </div>
+          </div>
+          <div class="skill-group reveal reveal-delay-3">
+            <div class="skill-group__title">IoT & Embarcados</div>
+            <div class="skill-tags">
+              <span class="skill-tag">ESP32</span>
+              <span class="skill-tag">Arduino</span>
+              <span class="skill-tag">Raspberry Pi</span>
+              <span class="skill-tag">MQTT</span>
+              <span class="skill-tag">C/C++</span>
+            </div>
+          </div>
+          <div class="skill-group reveal reveal-delay-3">
+            <div class="skill-group__title">DevOps & Ferramentas</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Docker</span>
+              <span class="skill-tag">AWS(básico)</span>
+              <span class="skill-tag">Git</span>
+              <span class="skill-tag">Linux</span>
+              <span class="skill-tag">Jupyter</span>
+              <span class="skill-tag">LaTeX</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== EXPERIÊNCIA ==================== -->
+    <section id="experiencia">
+      <div class="container">
+        <p class="section-label reveal">Carreira</p>
+        <h2 class="section-title reveal">Experiência Profissional</h2>
+        <p class="section-desc reveal">
+          Trabalhando em startups de IA e visão computacional, com foco em
+          soluções que geram impacto real.
+        </p>
+
+        <div class="experience__list">
+          <div class="exp-card reveal">
+            <div>
+              <div class="exp-card__company">
+                <a
+                  href="https://lumear.ia.br/"
+                  target="_blank"
+                  rel="noopener"
+                  style="color: inherit"
+                  >LUME · lumear.ia.br</a
+                >
+              </div>
+              <div class="exp-card__title">
+                Software Engineer – AI & Chatbots
+              </div>
+              <p class="exp-card__desc">
+                Desenvolvimento do primeiro SIG (Sistema de Informações
+                Gerenciais) em formato de chat voltado para MEIs. Responsável
+                pelo chatbot de gestão financeira e educacional integrado ao WhatsApp,
+                combinando IA, automação de fluxos e integrações financeiras
+                para simplificar a rotina de empreendedores.
+              </p>
+              <div class="exp-card__tags">
+                <span class="tag">FastAPI</span>
+                <span class="tag">LangChain</span>
+                <span class="tag">LangGraph</span>
+                <span class="tag">Redis</span>
+                <span class="tag">Supabase</span>
+                <span class="tag">WhatsApp API</span>
+              </div>
+            </div>
+            <div>
+              <div class="exp-card__type">● Ativo</div>
+              <div class="exp-card__period">
+                ago 2025 – presente<br />10 meses · Híbrido
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-card reveal reveal-delay-1">
+            <div>
+              <div class="exp-card__company">
+                <a
+                  href="https://www.pr3via.com.br/"
+                  target="_blank"
+                  rel="noopener"
+                  style="color: inherit"
+                  >PR3VIA · pr3via.com.br</a
+                >
+              </div>
+              <div class="exp-card__title">
+                Co-fundadora · Pesquisadora em Visão Computacional
+              </div>
+              <p class="exp-card__desc">
+                Co-fundadora da PR3VIA, startup de inovação em visão
+                computacional incubada na UEMA. Desenvolvimento do MVP voltado
+                para inspeção inteligente com câmeras e drones — pesquisa e
+                implementação de modelos de visão computacional, coleta e
+                anotação de dados, elaboração de mockups e validação de
+                hipóteses de mercado.
+              </p>
+              <div class="exp-card__tags">
+                <span class="tag">Visão Computacional</span>
+                <span class="tag">YOLO</span>
+                <span class="tag">Drones / UAV</span>
+                <span class="skill-tag">Câmeras de Vigilância</span>
+                <span class="tag">P&D</span>
+                <span class="tag">Incubação UEMA</span>
+              </div>
+            </div>
+            <div>
+              <div class="exp-card__type">● Ativo</div>
+              <div class="exp-card__period">
+                mai 2025 – presente<br />1 ano · Híbrido
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-card reveal reveal-delay-2">
+            <div>
+              <div class="exp-card__company">
+                UEMA – Universidade Estadual do Maranhão
+              </div>
+              <div class="exp-card__title">
+                Estudante de Engenharia de Computação
+              </div>
+              <p class="exp-card__desc">
+                Formação em Engenharia de Computação com ênfase em IA, sistemas
+                embarcados e desenvolvimento de software. Envolvimento em
+                pesquisa aplicada, projetos de extensão e empreendedorismo
+                tecnológico via incubadora universitária.
+              </p>
+              <div class="exp-card__tags">
+                <span class="tag">IA/ML</span>
+                <span class="tag">IoT</span>
+                <span class="tag">Pesquisa</span>
+                <span class="tag">Empreendedorismo</span>
+              </div>
+            </div>
+            <div>
+              <div class="exp-card__type" style="color: var(--color-warning)">
+                ● Em curso
+              </div>
+              <div class="exp-card__period">2018 – 2026<br />São Luís, MA</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PROJETOS ==================== -->
+    <section class="projects-section" id="projetos">
+      <div class="container--wide">
+        <p class="section-label reveal">Portfólio</p>
+        <h2 class="section-title reveal">Projetos em Destaque</h2>
+        <p class="section-desc reveal">
+          Do chatbot que ajuda empreendedores a drones que enxergam — projetos
+          que unem IA, automação e impacto real.
+        </p>
+
+        <div class="projects__grid">
+          <div class="project-card reveal">
+            <div class="project-card__header">
+              <div class="project-card__icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                  />
+                </svg>
+              </div>
+              <div class="project-card__links">
+                <a
+                  href="https://lumear.ia.br/"
+                  target="_blank"
+                  rel="noopener"
+                  class="project-card__link"
+                  aria-label="Ver projeto LUME"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                    />
+                    <polyline points="15,3 21,3 21,9" />
+                    <line x1="10" y1="14" x2="21" y2="3" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">
+                LUME — Chatbot Financeiro e Educacional para MEIs
+              </h3>
+              <p class="project-card__desc">
+                SIG em formato de chat integrado ao WhatsApp para
+                microempreendedores. Combina IA generativa, automação de fluxos
+                financeiros e integrações de pagamento para simplificar a gestão
+                de negócios.
+              </p>
+              <div class="project-card__tags">
+                <span class="project-card__tag">FastAPI</span>
+                <span class="project-card__tag">LangGraph</span>
+                <span class="project-card__tag">Redis</span>
+                <span class="tag">WhatsApp API</span>
+                <span class="project-card__tag">Supabase</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card reveal reveal-delay-1">
+            <div class="project-card__header">
+              <div
+                class="project-card__icon"
+                style="
+                  background: oklch(from var(--color-purple) l c h / 0.15);
+                  color: var(--color-purple);
+                "
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+              </div>
+              <div class="project-card__links">
+                <a
+                  href="https://www.pr3via.com.br/"
+                  target="_blank"
+                  rel="noopener"
+                  class="project-card__link"
+                  aria-label="Ver PR3VIA"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                    />
+                    <polyline points="15,3 21,3 21,9" />
+                    <line x1="10" y1="14" x2="21" y2="3" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">
+                PR3VIA — Inspeção Visual com Drones
+              </h3>
+              <p class="project-card__desc">
+                MVP de inspeção inteligente para câmeras e drones. Detecta
+                anomalias em infraestrutura de energia, logística e agro usando
+                modelos de visão computacional de última geração.
+              </p>
+              <div class="project-card__tags">
+                <span class="project-card__tag">YOLO</span>
+                <span class="project-card__tag">OpenCV</span>
+                <span class="project-card__tag">Python</span>
+                <span class="project-card__tag">Drone/UAV</span>
+                <span class="project-card__tag">Câmeras de Vigilância</span>
+                <span class="project-card__tag">P&D</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card reveal reveal-delay-1">
+            <div class="project-card__header">
+              <div
+                class="project-card__icon"
+                style="
+                  background: oklch(from var(--color-success) l c h / 0.15);
+                  color: var(--color-success);
+                "
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+                  />
+                </svg>
+              </div>
+              <div class="project-card__links">
+                <a
+                  href="https://github.com/alinembs/mwsn-esp32-precision-agriculture-tcc-uema"
+                  target="_blank"
+                  rel="noopener"
+                  class="project-card__link"
+                  aria-label="Ver no GitHub"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">
+                Redes de Sensores & IoT com ESP32
+              </h3>
+              <p class="project-card__desc">
+                Projetos de sistemas embarcados com ESP32 e Raspberry Pi,
+                comunicação MQTT, coleta de dados de sensores e integração com
+                backends em Python para monitoramento remoto.
+              </p>
+              <div class="project-card__tags">
+                <span class="project-card__tag">ESP32</span>
+                <span class="project-card__tag">MQTT</span>
+                <span class="project-card__tag">Python</span>
+                <span class="project-card__tag">Arduino</span>
+                <span class="project-card__tag">Raspberry Pi</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD: API REST Spring Boot — imagens-api -->
+          <div class="project-card reveal reveal-delay-2">
+            <div class="project-card__header">
+              <div
+                class="project-card__icon"
+                style="
+                  background: oklch(from var(--color-warning) l c h / 0.15);
+                  color: var(--color-warning);
+                "
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="3" />
+                  <path d="M9 9h6M9 12h6M9 15h4" />
+                </svg>
+              </div>
+              <div class="project-card__links">
+                <a
+                  href="https://github.com/alinembs/imagens-api"
+                  target="_blank"
+                  rel="noopener"
+                  class="project-card__link"
+                  aria-label="Ver no GitHub"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">
+                API REST de Imagens — Spring Boot
+              </h3>
+              <p class="project-card__desc">
+                API REST construída com Spring Boot (Java 17) para gerenciar
+                recursos relacionados a imagens. Arquitetura limpa com boas
+                práticas de desenvolvimento back-end em Java.
+              </p>
+              <div class="project-card__tags">
+                <span class="project-card__tag">Java 17</span>
+                <span class="project-card__tag">Spring Boot</span>
+                <span class="project-card__tag">REST API</span>
+                <span class="project-card__tag">Maven</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD: PPE Object Detection — PyTorch + Visão Computacional -->
+          <div class="project-card reveal reveal-delay-3">
+            <!-- versão completa do card: -->
+            <div class="project-card__header">
+              <div
+                class="project-card__icon"
+                style="
+                  background: oklch(from var(--color-purple) l c h / 0.15);
+                  color: var(--color-purple);
+                "
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="3" />
+                  <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z" />
+                </svg>
+              </div>
+              <div class="project-card__links">
+                <a
+                  href="https://github.com/alinembs/ppe-ssd-pytorch"
+                  target="_blank"
+                  rel="noopener"
+                  class="project-card__link"
+                  aria-label="Ver no GitHub"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">
+                Detecção de EPIs com SSD — PyTorch
+              </h3>
+              <p class="project-card__desc">
+                Detecção de Equipamentos de Proteção Individual (EPI) em tempo
+                real usando SSD (Single Shot Detector) com PyTorch. Aplicação de
+                visão computacional para segurança do trabalho.
+              </p>
+              <div class="project-card__tags">
+                <span class="project-card__tag">PyTorch</span>
+                <span class="project-card__tag">SSD</span>
+                <span class="project-card__tag">Object Detection</span>
+                <span class="project-card__tag">Python</span>
+                <span class="project-card__tag">Visão Computacional</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD: Braço Robótico ESP32 -->
+          <div class="project-card reveal reveal-delay-1">
+            <div class="project-card__header">
+              <div
+                class="project-card__icon"
+                style="
+                  background: oklch(from var(--color-success) l c h / 0.15);
+                  color: var(--color-success);
+                "
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"
+                  />
+                </svg>
+              </div>
+              <div class="project-card__links">
+                <a
+                  href="https://github.com/alinembs/esp32-braco-robotico-web-control"
+                  target="_blank"
+                  rel="noopener"
+                  class="project-card__link"
+                  aria-label="Ver no GitHub"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">
+                Braço Robótico com Controle Web — ESP32
+              </h3>
+              <p class="project-card__desc">
+                Controle de braço robótico com 3 servos (Base, Horizontal,
+                Vertical) via ESP32 em modo Access Point. Interface web servida
+                localmente para controle em tempo real via browser, sem
+                necessidade de rede externa.
+              </p>
+              <div class="project-card__tags">
+                <span class="project-card__tag">ESP32</span>
+                <span class="project-card__tag">Servos</span>
+                <span class="project-card__tag">WebServer</span>
+                <span class="project-card__tag">C</span>
+                <span class="project-card__tag">PlatformIO</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD: Avaliação OCR — NLP / Extração de Texto -->
+          <div class="project-card reveal reveal-delay-2">
+            <div class="project-card__header">
+              <div
+                class="project-card__icon"
+                style="
+                  background: oklch(from var(--color-blue) l c h / 0.15);
+                  color: var(--color-blue);
+                "
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                  />
+                  <polyline points="14,2 14,8 20,8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                </svg>
+              </div>
+              <div class="project-card__links">
+                <a
+                  href="https://github.com/alinembs/avaliacao_ocr"
+                  target="_blank"
+                  rel="noopener"
+                  class="project-card__link"
+                  aria-label="Ver no GitHub"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">Benchmark de Ferramentas OCR</h3>
+              <p class="project-card__desc">
+                Avaliação comparativa de ferramentas de extração de texto (OCR)
+                em notebooks Jupyter. Análise de performance, precisão e casos
+                de uso de diferentes soluções para processamento de documentos.
+              </p>
+              <div class="project-card__tags">
+                <span class="project-card__tag">Python</span>
+                <span class="project-card__tag">Jupyter</span>
+                <span class="project-card__tag">OCR</span>
+                <span class="project-card__tag">NLP</span>
+                <span class="project-card__tag">Análise</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD: Pesca Hora-Grau ESP32 — Aquicultura IoT -->
+          <div class="project-card reveal reveal-delay-3">
+            <div class="project-card__header">
+              <div
+                class="project-card__icon"
+                style="
+                  background: oklch(from var(--color-success) l c h / 0.15);
+                  color: var(--color-success);
+                "
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M3 12s3-4 9-4 9 4 9 4-3 4-9 4-9-4-9-4z" />
+                  <circle cx="12" cy="12" r="2" />
+                  <path d="M19.5 7.5L21 6M4.5 16.5L3 18" />
+                </svg>
+              </div>
+              <div class="project-card__links">
+                <a
+                  href="https://github.com/alinembs/pesca-hora-grau-esp32"
+                  target="_blank"
+                  rel="noopener"
+                  class="project-card__link"
+                  aria-label="Ver no GitHub"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">
+                Monitoramento de Desova — Aquicultura com ESP32
+              </h3>
+              <p class="project-card__desc">
+                Sistema IoT para monitoramento e controle da desova assistida de
+                peixes. Usa ESP32 com sensores de temperatura e cálculo de
+                Hora-Grau para otimizar o processo reprodutivo em aquicultura.
+              </p>
+              <div class="project-card__tags">
+                <span class="project-card__tag">ESP32</span>
+                <span class="project-card__tag">Temperatura</span>
+                <span class="project-card__tag">Hora-Grau</span>
+                <span class="project-card__tag">Aquicultura</span>
+                <span class="project-card__tag">C++</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD: Web Scraping — Coleção de scrapers -->
+          <div class="project-card reveal reveal-delay-1">
+            <div class="project-card__header">
+              <div
+                class="project-card__icon"
+                style="
+                  background: oklch(from var(--color-warning) l c h / 0.15);
+                  color: var(--color-warning);
+                "
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                  />
+                </svg>
+              </div>
+              <div class="project-card__links">
+                <a
+                  href="https://github.com/alinembs/porto_itaqui_web_scraping"
+                  target="_blank"
+                  rel="noopener"
+                  class="project-card__link"
+                  aria-label="Ver scrapers no GitHub"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">
+                Coleção de Web Scrapers — Selenium & BeautifulSoup
+              </h3>
+              <p class="project-card__desc">
+                Série de scrapers em Python para coleta automatizada de dados
+                públicos: navios do Porto do Itaqui, odds de casas de apostas
+                (Betano, Betway, Sportingbet) e resultados do Flashscore.
+              </p>
+              <div class="project-card__tags">
+                <span class="project-card__tag">Python</span>
+                <span class="project-card__tag">Selenium</span>
+                <span class="project-card__tag">BeautifulSoup</span>
+                <span class="project-card__tag">Web Scraping</span>
+                <span class="project-card__tag">Automação</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD: Caixa d'Água Inteligente ESP32 -->
+          <div class="project-card reveal reveal-delay-2">
+            <div class="project-card__header">
+              <div
+                class="project-card__icon"
+                style="
+                  background: oklch(from var(--color-blue) l c h / 0.15);
+                  color: var(--color-blue);
+                "
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M12 2L6 9h3v6h6V9h3L12 2z" />
+                  <rect x="4" y="19" width="16" height="2" rx="1" />
+                </svg>
+              </div>
+              <div class="project-card__links">
+                <a
+                  href="https://github.com/alinembs/tampa_de_caixadagua_inteligente_esp32"
+                  target="_blank"
+                  rel="noopener"
+                  class="project-card__link"
+                  aria-label="Ver no GitHub"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">
+                Caixa d'Água Inteligente — ESP32 + WebServer
+              </h3>
+              <p class="project-card__desc">
+                Sistema embarcado para monitorar nível de água com sensor
+                ultrassônico e controlar bomba via relé. Interface web local
+                servida pelo ESP32 com automação e controle manual via browser.
+              </p>
+              <div class="project-card__tags">
+                <span class="project-card__tag">ESP32</span>
+                <span class="project-card__tag">Ultrassônico</span>
+                <span class="project-card__tag">WebServer</span>
+                <span class="project-card__tag">SPIFFS</span>
+                <span class="project-card__tag">C++</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: var(--space-10)">
+          <a
+            href="https://github.com/alinembs?tab=repositories"
+            target="_blank"
+            rel="noopener"
+            class="btn btn--ghost reveal"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+              />
+            </svg>
+            Ver todos no GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CV GENERATOR ==================== -->
+    <section id="curriculo" class="cv-section">
+      <div class="container">
+        <p class="section-label reveal" style="text-align: center">Currículo</p>
+        <div class="cv-card reveal">
+          <div class="cv-card__icon">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+              />
+              <polyline points="14,2 14,8 20,8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+              <polyline points="10,9 9,9 8,9" />
+            </svg>
+          </div>
+          <h3>Baixar Currículo em PDF</h3>
+          <p>
+            Gera um PDF formatado com meu currículo completo a partir dos dados
+            deste portfólio.
+          </p>
+          <button
+            class="btn btn--primary"
+            id="download-cv-btn"
+            style="margin: 0 auto"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7,10 12,15 17,10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            Gerar e Baixar CV (PDF)
+          </button>
+          <p id="cv-status"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CONTATO ==================== -->
+    <section id="contato">
+      <div class="container">
+        <div class="contact__grid">
+          <div class="contact__info">
+            <p class="section-label reveal">Contato</p>
+            <h2 class="reveal">Vamos conversar<br />sobre IA?</h2>
+            <p class="reveal">
+              Aberta a oportunidades em IA, chatbots, visão computacional e
+              projetos de impacto social. Também aceito colaborações em pesquisa
+              e startups.
+            </p>
+            <div class="contact__links reveal">
+              <a
+                href="https://www.linkedin.com/in/aline-mariana-b83575184/"
+                target="_blank"
+                rel="noopener"
+                class="contact-link"
+              >
+                <span class="contact-link__icon"
+                  ><svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                    /></svg
+                ></span>
+                <span class="contact-link__text">
+                  <span class="contact-link__label">LinkedIn</span>
+                  <span class="contact-link__value"
+                    >aline-mariana-b83575184</span
+                  >
+                </span>
+              </a>
+              <a
+                href="https://github.com/alinembs"
+                target="_blank"
+                rel="noopener"
+                class="contact-link"
+              >
+                <span class="contact-link__icon"
+                  ><svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                    /></svg
+                ></span>
+                <span class="contact-link__text">
+                  <span class="contact-link__label">GitHub</span>
+                  <span class="contact-link__value">github.com/alinembs</span>
+                </span>
+              </a>
+              <a
+                href="https://huggingface.co/linembs"
+                target="_blank"
+                rel="noopener"
+                class="contact-link"
+              >
+                <span class="contact-link__icon" style="font-size: 1.1em"
+                  >🤗</span
+                >
+                <span class="contact-link__text">
+                  <span class="contact-link__label">HuggingFace</span>
+                  <span class="contact-link__value"
+                    >huggingface.co/linembs</span
+                  >
+                </span>
+              </a>
+              <a
+                href="https://www.instagram.com/_alinembs/"
+                target="_blank"
+                rel="noopener"
+                class="contact-link"
+              >
+                <span class="contact-link__icon"
+                  ><svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg
+                ></span>
+                <span class="contact-link__text">
+                  <span class="contact-link__label">Instagram</span>
+                  <span class="contact-link__value">@_alinembs</span>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div class="contact__cta-box reveal reveal-delay-1">
+            <h3>Aberta a oportunidades 🚀</h3>
+            <p>
+              Startups de IA, pesquisa aplicada, consultoria em chatbots ou
+              visão computacional. Vamos criar algo impactante juntos.
+            </p>
+            <a
+              href="https://www.linkedin.com/in/aline-mariana-b83575184/"
+              target="_blank"
+              rel="noopener"
+              class="btn btn--primary"
+              style="margin: 0 auto"
+            >
+              Entrar em contato no LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer>
+      <div class="container">
+        <div class="footer__inner">
+          <span class="footer__copy"
+            >© 2026 Aline Mariana Barros Silva. Site Feito com 🤖</span
+          >
+          <nav class="footer__links" aria-label="Links rodapé">
+            <a href="#sobre">Sobre</a>
+            <a href="#experiencia">Experiência</a>
+            <a href="#projetos">Projetos</a>
+            <a href="#contato">Contato</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script>
+      // Theme toggle
+      (function () {
+        const t = document.querySelector("[data-theme-toggle]");
+        const r = document.documentElement;
+        let d =
+          r.getAttribute("data-theme") ||
+          (matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+        r.setAttribute("data-theme", d);
+        function updateIcon() {
+          if (!t) return;
+          t.innerHTML =
+            d === "dark"
+              ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+              : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+        }
+        updateIcon();
+        t &&
+          t.addEventListener("click", () => {
+            d = d === "dark" ? "light" : "dark";
+            r.setAttribute("data-theme", d);
+            updateIcon();
+          });
+      })();
+
+      // Mobile menu
+      const ham = document.getElementById("hamburger-btn");
+      const mMenu = document.getElementById("mobile-menu");
+      const mClose = document.getElementById("menu-close");
+      ham && ham.addEventListener("click", () => mMenu.classList.add("open"));
+      mClose &&
+        mClose.addEventListener("click", () => mMenu.classList.remove("open"));
+      document
+        .querySelectorAll(".mobile-nav-link")
+        .forEach((l) =>
+          l.addEventListener("click", () => mMenu.classList.remove("open")),
+        );
+
+      // Scroll reveal
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+
+      // CV Generator using jsPDF
+      document
+        .getElementById("download-cv-btn")
+        .addEventListener("click", function () {
+          const btn = this;
+          const status = document.getElementById("cv-status");
+          btn.disabled = true;
+          btn.textContent = "Gerando PDF...";
+          status.textContent = "Preparando currículo...";
+
+          setTimeout(() => {
+            try {
+              const { jsPDF } = window.jspdf;
+              const doc = new jsPDF({ unit: "pt", format: "a4" });
+              const W = doc.internal.pageSize.getWidth();
+              const H = doc.internal.pageSize.getHeight();
+              const M = 50; // margin
+              let y = M;
+
+              // --- Helper functions ---
+              const line = (x1, y1, x2, y2, color) => {
+                doc.setDrawColor(...color);
+                doc.line(x1, y1, x2, y2);
+              };
+              const text = (t, x, yy, opts) => doc.text(t, x, yy, opts);
+              const checkPage = (needed) => {
+                if (y + needed > H - M) {
+                  doc.addPage();
+                  y = M;
+                }
+              };
+
+              // --- Background & header bar ---
+              doc.setFillColor(15, 54, 56); // dark teal
+              doc.rect(0, 0, W, 130, "F");
+
+              // Name
+              doc.setTextColor(255, 255, 255);
+              doc.setFontSize(28);
+              doc.setFont("helvetica", "bold");
+              text("Aline Mariana Barros Silva", M, 52);
+
+              // Title
+              doc.setFontSize(12);
+              doc.setFont("helvetica", "normal");
+              doc.setTextColor(160, 220, 220);
+              text(
+                "Software Engineer · AI & Chatbots · Visão Computacional",
+                M,
+                72,
+              );
+
+              // Contact line
+              doc.setFontSize(9);
+              doc.setTextColor(200, 235, 235);
+              text(
+                "github.com/alinembs  ·  linkedin.com/in/aline-mariana-b83575184  ·  huggingface.co/linembs",
+                M,
+                92,
+              );
+              text("São Luís, Maranhão, BR", M, 108);
+
+              y = 148;
+
+              // --- Section helper ---
+              const section = (title) => {
+                checkPage(30);
+                doc.setFontSize(10);
+                doc.setFont("helvetica", "bold");
+                doc.setTextColor(1, 105, 111);
+                text(title.toUpperCase(), M, y);
+                doc.setDrawColor(1, 105, 111);
+                doc.setLineWidth(0.8);
+                doc.line(M, y + 3, W - M, y + 3);
+                y += 18;
+                doc.setTextColor(40, 37, 29);
+              };
+
+              const para = (t, indent) => {
+                doc.setFontSize(9);
+                doc.setFont("helvetica", "normal");
+                doc.setTextColor(80, 78, 72);
+                const lines = doc.splitTextToSize(t, W - M * 2 - (indent || 0));
+                checkPage(lines.length * 13 + 6);
+                text(lines, M + (indent || 0), y);
+                y += lines.length * 13 + 6;
+              };
+
+              const job = (company, role, period, desc, tags) => {
+                checkPage(60);
+                doc.setFontSize(10);
+                doc.setFont("helvetica", "bold");
+                doc.setTextColor(40, 37, 29);
+                text(role, M, y);
+                doc.setFontSize(9);
+                doc.setFont("helvetica", "normal");
+                doc.setTextColor(1, 105, 111);
+                const pW = doc.getTextWidth(period);
+                text(period, W - M - pW, y);
+                y += 14;
+                doc.setFontSize(9);
+                doc.setFont("helvetica", "italic");
+                doc.setTextColor(100, 98, 94);
+                text(company, M, y);
+                y += 14;
+                para(desc, 0);
+                if (tags) {
+                  doc.setFontSize(8);
+                  doc.setFont("helvetica", "normal");
+                  doc.setTextColor(1, 105, 111);
+                  text("Stack: " + tags, M, y);
+                  y += 14;
+                }
+                y += 4;
+              };
+
+              // --- RESUMO ---
+              section("Resumo");
+              para(
+                "Estudante de Engenharia de Computação pela UEMA (conclusão 2026). Desenvolvedora de sistemas e pesquisadora com experiência em IA, NLP, Visão Computacional e Full Stack. Co-fundadora da PR3VIA e Software Engineer na LUME. Expertise em Python, FastAPI, LangChain, LangGraph e visão computacional com drones.",
+              );
+
+              // --- EXPERIÊNCIA ---
+              section("Experiência Profissional");
+              job(
+                "LUME · lumear.ia.br — Meio período · Híbrido",
+                "Software Engineer – AI & Chatbots",
+                "ago 2025 – presente",
+                "Desenvolvimento do primeiro SIG em formato de chat para MEIs. Chatbot de gestão financeira e educacional integrado ao WhatsApp combinando IA generativa, automação de fluxos e integrações financeiras para simplificar a rotina de empreendedores.",
+                "FastAPI, LangChain, LangGraph, Redis, Supabase, Python, Docker",
+              );
+              job(
+                "PR3VIA · pr3via.com.br — Startup incubada UEMA · Híbrido",
+                "Co-fundadora · Pesquisadora em Visão Computacional",
+                "mai 2025 – presente",
+                "Co-fundadora da startup de inovação em visão computacional. Desenvolvimento do MVP para inspeção inteligente com câmeras e drones. Pesquisa e implementação de modelos de visão computacional, coleta e anotação de dados, validação de hipóteses com potenciais clientes.",
+                "OpenCV, Câmera IP, Python, Drone/UAV, P&D",
+              );
+              job(
+                "UEMA – Universidade Estadual do Maranhão",
+                "Estudante de Engenharia de Computação",
+                "2018 – 2026",
+                "Formação em Engenharia de Computação com ênfase em IA, sistemas embarcados e desenvolvimento de software. Pesquisa aplicada, projetos de extensão e empreendedorismo tecnológico.",
+                "",
+              );
+
+              // --- HABILIDADES ---
+              section("Habilidades Técnicas");
+              const skills = [
+                [
+                  "IA & ML:",
+                  "Python, LangChain, LangGraph, FastAPI, TensorFlow, PyTorch, scikit-learn, HuggingFace, BERT",
+                ],
+                [
+                  "Visão Computacional:",
+                  "OpenCV, YOLO, detecção de anomalias, anotação de dados, inspeção com drones",
+                ],
+                [
+                  "Backend & BD:",
+                  "FastAPI, Spring Boot (Java), Redis, Supabase, PostgreSQL, MySQL",
+                ],
+                [
+                  "Frontend:",
+                  "React, Next.js, TypeScript, JavaScript, HTML5, CSS3",
+                ],
+                [
+                  "IoT & Embarcados:",
+                  "ESP32, Arduino, Raspberry Pi, MQTT, C/C++",
+                ],
+                [
+                  "DevOps & Ferramentas:",
+                  "Docker, Git, Linux/Ubuntu, Jupyter, LaTeX,AWS(básico)",
+                ],
+                [
+                  "Idiomas:",
+                  "Português (nativo), Inglês (intermediário), Espanhol (básico)",
+                ],
+              ];
+              skills.forEach(([label, val]) => {
+                checkPage(18);
+                doc.setFontSize(9);
+                doc.setFont("helvetica", "bold");
+                doc.setTextColor(40, 37, 29);
+                text(label, M, y);
+                const lw = doc.getTextWidth(label) + 4;
+                doc.setFont("helvetica", "normal");
+                doc.setTextColor(80, 78, 72);
+                const lines = doc.splitTextToSize(val, W - M * 2 - lw);
+                text(lines, M + lw, y);
+                y += lines.length * 13 + 2;
+              });
+              y += 6;
+
+              // --- PROJETOS ---
+              section("Projetos em Destaque");
+              const projects = [
+                [
+                  "LUME — Chatbot Financeiro e Educacional para MEIs",
+                  "SIG em formato de chat integrado ao WhatsApp para microempreendedores. IA generativa + automação financeira. (lumear.ia.br)",
+                ],
+                [
+                  "PR3VIA — Inspeção Visual com Drones e Câmeras de Vigilância",
+                  "MVP de inspeção inteligente com câmeras e drones. Detecção de anomalias em infraestrutura. (pr3via.com.br)",
+                ],
+                [
+                  "Modelos NLP — HuggingFace",
+                  "Fine-tuning de BERT e modelos de linguagem para PLN em português em parceria com TJMA. (huggingface.co/linembs)",
+                ],
+                [
+                  "IoT com ESP32",
+                  "Sistemas embarcados com ESP32/Raspberry Pi, comunicação MQTT e integração com backends Python.",
+                ],
+              ];
+              projects.forEach(([title, desc]) => {
+                checkPage(32);
+                doc.setFontSize(9);
+                doc.setFont("helvetica", "bold");
+                doc.setTextColor(1, 105, 111);
+                text("▸ " + title, M, y);
+                y += 13;
+                doc.setFont("helvetica", "normal");
+                doc.setTextColor(80, 78, 72);
+                const lines = doc.splitTextToSize(desc, W - M * 2 - 10);
+                text(lines, M + 10, y);
+                y += lines.length * 13 + 4;
+              });
+
+              // --- FORMAÇÃO ---
+              section("Formação");
+              checkPage(30);
+              doc.setFontSize(9);
+              doc.setFont("helvetica", "bold");
+              doc.setTextColor(40, 37, 29);
+              text("Bacharelado em Engenharia de Computação", M, y);
+              doc.setFont("helvetica", "normal");
+              doc.setTextColor(100, 98, 94);
+              text(
+                "UEMA — Universidade Estadual do Maranhão  |  2018 – 2026 (previsto)",
+                M,
+                y + 13,
+              );
+              y += 30;
+
+              // Footer
+              doc.setFontSize(8);
+              doc.setTextColor(160, 158, 154);
+              text(
+                "Gerado em " +
+                  new Date().toLocaleDateString("pt-BR") +
+                  "  ·  github.com/alinembs  ·  linkedin.com/in/aline-mariana-b83575184",
+                M,
+                H - 25,
+              );
+
+              doc.save("Aline_Mariana_2026_CV.pdf");
+              status.textContent = "✓ CV baixado com sucesso!";
+            } catch (e) {
+              status.textContent =
+                "Erro ao gerar PDF. Por favor tente novamente.";
+              console.error(e);
+            }
+            btn.disabled = false;
+            btn.innerHTML =
+              '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Gerar e Baixar CV (PDF)';
+            setTimeout(() => {
+              status.textContent = "";
+            }, 4000);
+          }, 100);
+        });
+    </script>
+  </body>
 </html>
