@@ -1,9 +1,11 @@
 # 👋 Olá, eu sou a Aline Mariana
 
 ```diff
-+ Engenharia de Computação — UEMA 
+
++ Formada em Engenharia da Computação 
 + São Luís, Maranhão, Brasil 🇧🇷
-! Software Engineer | AI & Chatbots | Visão Computacional | IoT
+! Engenheiro de Software | IA e chatbots | Visão Computacional | IoT
+
 ```
 ***
 <div align="center">
@@ -37,11 +39,11 @@ Participo da criação do primeiro **SIG (Sistema de Informações Gerenciais) e
 ***
 
 ### 👁 [PR3VIA](https://www.pr3via.com.br) · Co-fundadora · Pesquisadora em Visão Computacional
-> mai 2025 – presente · Startup incubada na UEMA · Híbrido
+> mai 2025 – presente  · Híbrido
 
 Co-fundadora da PR3VIA, startup de inovação em **visão computacional** dedicada a soluções de inspeção, monitoramento e detecção de anomalias nos setores de energia, indústria, logística e agro. Responsável pelo MVP com câmeras e drones.
 
-`Visão Computacional`  `Drones/UAV` `P&D`
+`Visão Computacional`  `Drones/UAV` `P&D` `Segurança do Trabalho` 
 
 ***
 
