@@ -449,6 +449,21 @@
         background: var(--color-surface);
         border: 1px solid var(--color-border);
       }
+      .stat-card--link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+        transition:
+          transform var(--transition),
+          box-shadow var(--transition),
+          border-color var(--transition);
+      }
+      .stat-card--link:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+        border-color: oklch(from var(--color-primary) l c h / 0.35);
+      }
       .stat-card__num {
         font-family: var(--font-display);
         font-size: var(--text-2xl);
@@ -1014,21 +1029,20 @@
         style="display: flex; flex-direction: column; align-items: center"
       >
         <p class="hero__eyebrow reveal">
-          Software Engineer · IA & Chatbots · Visão Computacional
+          Engenheira de Software · IA & Chatbots · Visão Computacional
         </p>
         <h1 class="hero__name reveal reveal-delay-1">Aline<br />Mariana</h1>
         <div class="hero__roles reveal reveal-delay-2">
           <span class="hero__role hero__role--primary">🤖 AI & NLP</span>
-          <span class="hero__role">👁 Visão Computacional</span>
-          <span class="hero__role">🐍 Python · FastAPI</span>
-          <span class="hero__role">⚡ LangChain · LangGraph</span>
-          <span class="hero__role">🔌 IoT · ESP32</span>
+          <span class="hero__role hero__role--primary">👁 Visão Computacional</span>
+          <span class="hero__role hero__role--primary">🐍 Python · FastAPI</span>
+          <span class="hero__role hero__role--primary">⚡ LangChain · LangGraph</span>
+          <span class="hero__role hero__role--primary">🔌 IoT · ESP32</span>
         </div>
         <p class="hero__desc reveal reveal-delay-2">
-          Estudante de Engenharia de Computação pela UEMA. Desenvolvo sistemas
-          inteligentes — de chatbots financeiros | educacionais a visão
-          computacional para drones e câmeras de vigilância. Previsão de
-          conclusão: final de 2026.
+        Formada em Engenharia da Computação. Desenvolvo sistemas
+          inteligentes de chatbots financeiros, educacionais a visão
+          computacional para drones e câmeras de vigilância.
         </p>
         <div class="hero__actions reveal reveal-delay-3">
           <a href="#projetos" class="btn btn--primary">
@@ -1112,10 +1126,10 @@
               Construindo IA que<br />impacta pessoas
             </h2>
             <p class="reveal reveal-delay-1">
-              Sou estudante de <strong>Engenharia de Computação</strong> pela
-              UEMA, com foco em Inteligência Artificial, Processamento de
+                Formada em <strong>Engenharia de Computação</strong> pela
+              UEMA. Tenho foco em projetos em Inteligência Artificial, Processamento de
               Linguagem Natural e Visão Computacional. Atuo como desenvolvedora
-              de sistemas e pesquisadora em duas frentes ativas — chatbots de
+              de sistemas e pesquisadora em duas frentes ativas: chatbots de
               gestão financeira e inspeção inteligente com visão computacional.
             </p>
             <p class="reveal reveal-delay-1">
@@ -1126,8 +1140,7 @@
               impacto.
             </p>
             <p class="reveal reveal-delay-2">
-              Com conclusão prevista para o final de 2026, busco desafios que
-              unam <strong>IA, automação e inovação tecnológica</strong> — seja
+               Busco desafios que unam <strong>IA, automação e inovação tecnológica</strong>, seja
               em startups, pesquisa aplicada ou projetos de impacto social.
             </p>
           </div>
@@ -1144,10 +1157,15 @@
               <div class="stat-card__num">10+</div>
               <div class="stat-card__label">Tecnologias</div>
             </div>
-            <div class="stat-card">
-              <div class="stat-card__num">2026</div>
-              <div class="stat-card__label">Formatura prevista</div>
-            </div>
+            <a
+              href="https://laca-ufopa.com.br/produtos"
+              target="_blank"
+              rel="noopener"
+              class="stat-card stat-card--link"
+            >
+              <div class="stat-card__num">+5</div>
+              <div class="stat-card__label">Programas de Computadores registrados no INPI</div>
+            </a>
           </div>
         </div>
       </div>
@@ -1165,11 +1183,11 @@
               <span class="skill-tag">Python</span>
               <span class="skill-tag">LangChain</span>
               <span class="skill-tag">LangGraph</span>
-              <span class="skill-tag">FastAPI</span>
               <span class="skill-tag">TensorFlow</span>
               <span class="skill-tag">PyTorch</span>
               <span class="skill-tag">scikit-learn</span>
               <span class="skill-tag">HuggingFace</span>
+
             </div>
           </div>
           <div class="skill-group reveal reveal-delay-1">
@@ -1177,7 +1195,7 @@
             <div class="skill-tags">
               <span class="skill-tag">OpenCV</span>
               <span class="skill-tag">YOLO</span>
-              <span class="skill-tag">Detecção de anomalias</span>
+              <span class="skill-tag">DeepStream</span>
               <span class="skill-tag">Anotação de dados</span>
               <span class="skill-tag">Drone / UAV</span>
               <span class="skill-tag">Câmeras de Vigilância</span>
@@ -1191,7 +1209,6 @@
               <span class="skill-tag">FastAPI</span>
               <span class="skill-tag">Spring Boot</span>
               <span class="skill-tag">Redis</span>
-              <span class="skill-tag">Supabase</span>
               <span class="skill-tag">PostgreSQL</span>
               <span class="skill-tag">MySQL</span>
 
@@ -1320,7 +1337,7 @@
             </div>
           </div>
 
-          <div class="exp-card reveal reveal-delay-2">
+          <!-- <div class="exp-card reveal reveal-delay-2">
             <div>
               <div class="exp-card__company">
                 UEMA – Universidade Estadual do Maranhão
@@ -1347,7 +1364,7 @@
               </div>
               <div class="exp-card__period">2018 – 2026<br />São Luís, MA</div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
