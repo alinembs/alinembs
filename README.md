@@ -4,7 +4,7 @@
 
 + Formada em Engenharia da Computação 
 + São Luís, Maranhão, Brasil 🇧🇷
-! Engenheiro de Software | IA e chatbots | Visão Computacional | IoT
+! Engenheira de Software | IA e chatbots | Visão Computacional | IoT
 
 ```
 ***
